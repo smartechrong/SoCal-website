@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南加州地产 — SoCal Realty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+    }
+    nav {
+      background: #34495e;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a, .dropbtn {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .language-switcher {
+      float: right;
+      margin-right: 20px;
+    }
+    section {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .projects-grid { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; padding:16px 0; }
+    .projects-grid .project-card {
+      flex: 0 1 calc(33.333% - 16px);
+      max-width: calc(33.333% - 16px);
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .projects-grid .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    .projects-grid .project-card h3 { margin:10px 0 4px; }
+    .projects-grid .project-card p { margin:0 0 12px; color:#555; }
+
+    @media (max-width:1000px) {
+      .projects-grid .project-card {
+        flex: 0 1 calc(50% - 16px);
+        max-width: calc(50% - 16px);
+      }
+    }
+    @media (max-width:600px) {
+      .projects-grid .project-card {
+        flex: 0 1 100%;
+        max-width: 100%;
+      }
+      .projects-grid .project-card img { height: 160px; }
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-info {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-info {
+      opacity: 1;
+    }
+
+    /* Lightbox 样式 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white;
+      font-size: 32px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>南加州地产</h1>
+    <p>您在南加州值得信赖的房地产投资伙伴</p>
+  </header>
+
+  <nav>
+    <a href="#about">关于我们</a>
+    <a href="#projects" class="nav-projects">开发项目</a>
+    <a href="#contact">联系我们</a>
+    <select class="language-switcher" onchange="switchLanguage()">
+      <option value="zh">中文</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <section id="about">
+    <h2>关于我们</h2>
+    <p>南加州地产专注于住宅与商业房地产投资，致力于通过智能与可持续的物业开发和管理创造长期价值。</p>
+  </section>
+
+  <section id="projects">
+    <h2>往期项目</h2>
+    <p>点击项目主图查看大图与项目说明。</p>
+
+    <div class="gallery">
+      <a href="#img1" class="gallery-item">
+        <img src="images/project1.jpg" alt="Pasadena 49-unit apartment">
+        <div class="gallery-info">帕萨迪纳 49 套公寓 — 权益办理中</div>
+      </a>
+      <a href="#img2" class="gallery-item">
+        <img src="images/project2.jpg" alt="53-unit condos South Pasadena">
+        <div class="gallery-info">南帕萨迪纳 53 套公寓 — 权益办理中</div>
+      </a>
+      <a href="#img3" class="gallery-item">
+        <img src="images/project3.jpg" alt="Vacant land entitlement">
+        <div class="gallery-info">空地权限与在建 — South Pasadena</div>
+      </a>
+      <a href="#img4" class="gallery-item">
+        <img src="images/project4.jpg" alt="Two single-family residences">
+        <div class="gallery-info">两户独立住宅 — South Pasadena</div>
+      </a>
+      <a href="#img5" class="gallery-item">
+        <img src="images/project5.jpg" alt="7-unit condos Pasadena">
+        <div class="gallery-info">帕萨迪纳 7 套公寓 — 权益办理中</div>
+      </a>
+      <a href="#img6" class="gallery-item">
+        <img src="images/project6.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+      <a href="#img7" class="gallery-item">
+        <img src="images/project7.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+      <a href="#img8" class="gallery-item">
+        <img src="images/project8.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+      <a href="#img9" class="gallery-item">
+        <img src="images/project9.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+      <a href="#img10" class="gallery-item">
+        <img src="images/project10.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+      <a href="#img11" class="gallery-item">
+        <img src="images/project11.jpg" alt="3-unit condo South Pasadena">
+        <div class="gallery-info">3 套公寓开发 — South Pasadena</div>
+      </a>
+    </div>
+
+    <!-- Lightbox 预览 -->
+    <div id="img1" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project1.jpg" alt="">
+    </div>
+    <div id="img2" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project2.jpg" alt="">
+    </div>
+    <div id="img3" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project3.jpg" alt="">
+    </div>
+    <div id="img4" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project4.jpg" alt="">
+    </div>
+    <div id="img5" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project5.jpg" alt="">
+    </div>
+    <div id="img6" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project6.jpg" alt="">
+    </div>
+    <div id="img7" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project7.jpg" alt="">
+    </div>
+    <div id="img8" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project8.jpg" alt="">
+    </div>
+    <div id="img9" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project9.jpg" alt="">
+    </div>
+    <div id="img10" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project10.jpg" alt="">
+    </div>
+    <div id="img11" class="lightbox">
+      <a href="#" class="close">&times;</a>
+      <img src="images/project11.jpg" alt="">
+    </div>
+
+  </section>
+
+  <section id="contact">
+    <h2>联系我们</h2>
+    <p>📍 330 Goddard, Irvine, CA 92618</p>
+    <p>📞 (949) 2786682</p>
+    <p>📧 victor@socalrealty.com</p>
+
+    <form>
+      <input type="text" placeholder="您的姓名" required>
+      <input type="email" placeholder="您的邮箱" required>
+      <textarea rows="4" placeholder="您的留言" required></textarea>
+      <button type="submit">发送信息</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 南加州地产。保留所有权利。</p>
+  </footer>
+
+  <script>
+    function switchLanguage() {
+      const lang = document.querySelector('.language-switcher').value;
+      // English page file in the same folder is "socal web.html"
+      window.location.href = lang === 'en' ? 'socal web.html' : 'zh socal web.html';
+    }
+  </script>
+</body>
+</html>
